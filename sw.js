@@ -1,31 +1,3 @@
-// // Define un nombre y una versión para tu caché.
-// // ¡Importante! Cambia la versión si haces cambios en los archivos cacheados.
-// const CACHE_NAME = 'cuasi-coromoto-cache-v2'; // Cambiamos a v2
-
-// // Lista de archivos que queremos que se guarden en caché.
-// const urlsToCache = [
-//   // --- Archivos Principales ---
-//   '/', // La raíz de la web
-//   'style.css',
-//   'index.html',
-//   'manifest.json',
-//   'sw.js', // ¡Cachear el propio service worker es una buena práctica!
-//   'favicon.svg',
-
-//   // --- Iconos ---
-//   'iconos/icon-192x192.png',
-//   'iconos/icon-512x512.png',
-
-//   // --- Fuentes Tipográficas ---
-//   // ¡Aquí está la clave para que la tipografía funcione offline!
-//   // Asegúrate de que las rutas son correctas según tu estructura de carpetas.
-//   './fonts/Lora-Bold.ttf',
-//   './fonts/Montserrat-Light.ttf',
-//   './fonts/Montserrat-Regular.ttf',
-//   './fonts/Montserrat-Medium.ttf',
-//   './fonts/Montserrat-Bold.ttf'
-// ];
-
 const CACHE_NAME = 'cuasi-coromoto-cache-v2';
 // Define la base de la URL para tu subdirectorio en GitHub Pages
 const BASE_URL = '/cuasicoromoto';
