@@ -1,7 +1,7 @@
 /* ==========================================================================
    REGLAS @font-face PARA FUENTES LOCALES
    ========================================================================== */
-@font-face {
+   @font-face {
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
@@ -68,7 +68,6 @@
 }
 
 html { scroll-behavior: smooth; }
-:target { scroll-margin-top: var(--header-height); }
 
 body {
     font-family: var(--fuente-cuerpo);
@@ -76,8 +75,6 @@ body {
     color: var(--color-texto-principal);
     font-size: 16px;
     line-height: 1.4;
-    padding-top: 80px;
-
     padding-top: var(--header-height); 
     min-height: 0;
 }
@@ -94,6 +91,7 @@ body {
     min-height: calc(100vh - var(--header-height));
     padding: 70px 0;
     border-bottom: 1px solid #e0e0e0;
+    scroll-margin-top: var(--header-height); /* <-- CORRECCIÓN PARA EL SCROLL MÓVIL */
 }
 #inicio.seccion { padding-top: 30px; min-height: calc(100vh - var(--header-height)); }
 .seccion:nth-of-type(even) { background: var(--color-fondo-alterno); }
@@ -517,4 +515,45 @@ body {
     color: #aaa;
     font-size: 2rem;
     font-family: sans-serif;
+}
+
+/* ==========================================================================
+    5. ESTILOS PARA NOTIFICACIÓN DE ACTUALIZACIÓN (NUEVO)
+   ========================================================================== */
+#update-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-vinotinto-profundo);
+    color: var(--color-blanco);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+#update-notification.notification-hidden {
+    transform: translateX(-50%) translateY(200%); /* Oculta la notificación abajo */
+}
+#update-notification p {
+    margin: 0;
+    font-weight: 500;
+}
+#reload-button {
+    background-color: var(--color-dorado-vibrante);
+    color: var(--color-vinotinto-profundo);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--fuente-cuerpo);
+    transition: background-color 0.3s;
+}
+#reload-button:hover {
+    background-color: #ecca5a;
 }
