@@ -22,7 +22,7 @@
     <header class="encabezado">
         <div class="contenedor-central">
             <div class="logo">
-                <p class="titulo-secundario">CUASIPARROQUIA e</p>
+                <p class="titulo-secundario">CUASIPARROQUIA g</p>
                 <h1 class="titulo-principal">Nuestra Señora de Coromoto</h1>
             </div>
             <nav class="navegacion">
@@ -419,9 +419,10 @@
         </div>
     </footer>
 
-    <!-- SCRIPT CARRUSEL -->
+    <!-- SCRIPTS UNIFICADOS Y OPTIMIZADOS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Carruseles ---
             function inicializarCarrusel(config) {
                 const contenedor = document.querySelector(config.containerSelector);
                 const btnPrev = document.getElementById(config.prevBtnId);
@@ -439,7 +440,7 @@
                     const primerItem = contenedor.querySelector(':first-child');
                     if (!primerItem) return;
 
-                    const gap = 16; // 1rem
+                    const gap = 16;
                     const containerWidth = contenedor.clientWidth;
                     const totalItems = contenedor.children.length;
 
@@ -448,17 +449,13 @@
                         numSlides = totalItems;
                     } else {
                         slideWidth = containerWidth;
-                        const itemsPerPage = 2; // Basado en el CSS 'flex-basis: calc(50% - 0.5rem)'
+                        const itemsPerPage = 2;
                         numSlides = Math.ceil(totalItems / itemsPerPage);
                     }
-                    
+
                     const carruselContenedor = contenedor.closest('.carrusel-contenedor');
                     if (carruselContenedor) {
-                        if (numSlides <= 1) {
-                            carruselContenedor.classList.add('no-scroll');
-                        } else {
-                            carruselContenedor.classList.remove('no-scroll');
-                        }
+                        carruselContenedor.classList.toggle('no-scroll', numSlides <= 1);
                     }
 
                     indicadoresContenedor.innerHTML = '';
@@ -468,8 +465,7 @@
                             dot.classList.add('carrusel-dot');
                             dot.setAttribute('aria-label', `Ir a la página ${i + 1}`);
                             dot.addEventListener('click', () => {
-                                const scrollPos = i * slideWidth;
-                                contenedor.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                                contenedor.scrollTo({ left: i * slideWidth, behavior: 'smooth' });
                             });
                             indicadoresContenedor.appendChild(dot);
                         }
@@ -481,47 +477,35 @@
                     const esMovil = window.innerWidth <= 767;
                     const primerItem = contenedor.querySelector(':first-child');
                     if (!primerItem) return;
-
                     const scrollUnit = esMovil ? (primerItem.offsetWidth + 16) : contenedor.clientWidth;
-                    
                     if (numSlides <= 1 || scrollUnit === 0) return;
-                    
                     currentIndex = Math.round(contenedor.scrollLeft / scrollUnit);
-                    
-                    const dots = indicadoresContenedor.querySelectorAll('.carrusel-dot');
-                    dots.forEach((dot, index) => {
-                        dot.classList.toggle('activo', index === currentIndex);
+                    indicadoresContenedor.querySelectorAll('.carrusel-dot').forEach((dot, idx) => {
+                        dot.classList.toggle('activo', idx === currentIndex);
                     });
                 };
-                
-                if (btnPrev) {
-                    btnPrev.addEventListener('click', () => {
-                         if (currentIndex === 0) {
-                            const maxScrollLeft = contenedor.scrollWidth - contenedor.clientWidth;
-                            contenedor.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
-                         } else {
-                            contenedor.scrollBy({ left: -slideWidth, behavior: 'smooth' });
-                         }
-                    });
-                }
 
-                if (btnNext) {
-                    btnNext.addEventListener('click', () => {
-                        if (currentIndex >= numSlides - 1) {
-                            contenedor.scrollTo({ left: 0, behavior: 'smooth' });
-                        } else {
-                            contenedor.scrollBy({ left: slideWidth, behavior: 'smooth' });
-                        }
-                    });
-                }
+                btnPrev?.addEventListener('click', () => {
+                    if (currentIndex === 0) {
+                        contenedor.scrollTo({ left: contenedor.scrollWidth - contenedor.clientWidth, behavior: 'smooth' });
+                    } else {
+                        contenedor.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+                    }
+                });
 
-                let scrollTimer;
+                btnNext?.addEventListener('click', () => {
+                    if (currentIndex >= numSlides - 1) {
+                        contenedor.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        contenedor.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                    }
+                });
+
+                let scrollTimer, resizeTimer;
                 contenedor.addEventListener('scroll', () => {
                     clearTimeout(scrollTimer);
                     scrollTimer = setTimeout(updateIndicators, 150);
                 });
-
-                let resizeTimer;
                 window.addEventListener('resize', () => {
                     clearTimeout(resizeTimer);
                     resizeTimer = setTimeout(setupCarousel, 250);
@@ -536,152 +520,99 @@
             inicializarCarrusel({ containerSelector: '#apostolado .contenedor-tarjetas', prevBtnId: 'apostolado-btn-prev', nextBtnId: 'apostolado-btn-next', indicatorsSelector: '.apostolado-indicadores' });
             inicializarCarrusel({ containerSelector: '#contactos .subseccion .contenedor-tarjetas', prevBtnId: 'contactos-btn-prev', nextBtnId: 'contactos-btn-next', indicatorsSelector: '.contactos-indicadores' });
             inicializarCarrusel({ containerSelector: '#obras .contenedor-tarjetas', prevBtnId: 'obras-btn-prev', nextBtnId: 'obras-btn-next', indicatorsSelector: '.obras-indicadores' });
-        });
-    </script>
 
-    <!-- SCRIPT BOTONES FLOTANTES -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Este script ahora se ejecuta siempre, pero los botones solo son
-            // visibles en móvil gracias al CSS. Esto asegura que siempre funcionen.
+            // --- Botones flotantes de navegación ---
             const secciones = Array.from(document.querySelectorAll('main .seccion'));
             const btnSubir = document.getElementById('boton-subir-seccion');
             const btnBajar = document.getElementById('boton-bajar-seccion');
             let indiceSeccionActual = 0;
 
             const actualizarBotones = () => {
-                if (!btnSubir || !btnBajar) return;
-                
-                btnSubir.classList.toggle('oculto', indiceSeccionActual === 0);
-                btnBajar.classList.toggle('oculto', indiceSeccionActual === secciones.length - 1);
+                btnSubir?.classList.toggle('oculto', indiceSeccionActual === 0);
+                btnBajar?.classList.toggle('oculto', indiceSeccionActual === secciones.length - 1);
             };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const seccionVisible = entry.target;
-                        indiceSeccionActual = secciones.indexOf(seccionVisible);
-                        actualizarBotones();
-                    }
-                });
-            }, { threshold: 0.4 }); 
-
             if (secciones.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            indiceSeccionActual = secciones.indexOf(entry.target);
+                            actualizarBotones();
+                        }
+                    });
+                }, { threshold: 0.4 });
                 secciones.forEach(seccion => observer.observe(seccion));
             }
 
-            if (btnSubir) {
-                btnSubir.addEventListener('click', () => {
-                    if (indiceSeccionActual > 0) {
-                        secciones[indiceSeccionActual - 1].scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            }
-            
-            if (btnBajar) {
-                btnBajar.addEventListener('click', () => {
-                    if (indiceSeccionActual < secciones.length - 1) {
-                        secciones[indiceSeccionActual + 1].scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            }
-        });
-    </script>
+            btnSubir?.addEventListener('click', () => {
+                if (indiceSeccionActual > 0) {
+                    secciones[indiceSeccionActual - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            btnBajar?.addEventListener('click', () => {
+                if (indiceSeccionActual < secciones.length - 1) {
+                    secciones[indiceSeccionActual + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
 
-    <!-- SCRIPT MENÚ HAMBURGUESA -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            // --- Menú hamburguesa ---
             const botonMenu = document.querySelector('.boton-hamburguesa');
             const navegacion = document.querySelector('.navegacion');
             const enlacesMenu = document.querySelectorAll('.navegacion a');
             const body = document.body;
 
-            if (botonMenu && navegacion) {
-                botonMenu.addEventListener('click', () => {
-                    navegacion.classList.toggle('menu-abierto');
-                    botonMenu.classList.toggle('activo');
-                    body.classList.toggle('menu-abierto-body');
-                    botonMenu.setAttribute('aria-expanded', navegacion.classList.contains('menu-abierto'));
-                });
+            botonMenu?.addEventListener('click', () => {
+                navegacion.classList.toggle('menu-abierto');
+                botonMenu.classList.toggle('activo');
+                body.classList.toggle('menu-abierto-body');
+                botonMenu.setAttribute('aria-expanded', navegacion.classList.contains('menu-abierto'));
+            });
 
-                enlacesMenu.forEach(enlace => {
-                    enlace.addEventListener('click', () => {
-                        if (navegacion.classList.contains('menu-abierto')) {
-                            navegacion.classList.remove('menu-abierto');
-                            botonMenu.classList.remove('activo');
-                            body.classList.remove('menu-abierto-body');
-                            botonMenu.setAttribute('aria-expanded', 'false');
-                        }
-                    });
+            enlacesMenu.forEach(enlace => {
+                enlace.addEventListener('click', () => {
+                    if (navegacion.classList.contains('menu-abierto')) {
+                        navegacion.classList.remove('menu-abierto');
+                        botonMenu.classList.remove('activo');
+                        body.classList.remove('menu-abierto-body');
+                        botonMenu.setAttribute('aria-expanded', 'false');
+                    }
                 });
-            }
-        });
-    </script>
+            });
 
-    <!-- SCRIPT NAVEGACIÓN ACTIVA (PC) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Este script se ejecuta solo en la vista de escritorio.
+            // --- Navegación activa (PC) ---
             if (window.innerWidth > 767) {
-                const secciones = document.querySelectorAll('.seccion');
                 const navLinks = document.querySelectorAll('.navegacion a');
-                
-                // Establece "Inicio" como activo al cargar la página.
                 const linkInicio = document.querySelector('.navegacion a[href="#inicio"]');
-                if (linkInicio) {
-                    linkInicio.classList.add('activo');
-                }
-
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.50 
-                };
-
-                const observer = new IntersectionObserver((entries, observer) => {
+                linkInicio?.classList.add('activo');
+                const observerOptions = { root: null, rootMargin: '0px', threshold: 0.50 };
+                const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            navLinks.forEach(link => {
-                                link.classList.remove('activo');
-                            });
-                            
+                            navLinks.forEach(link => link.classList.remove('activo'));
                             const id = entry.target.getAttribute('id');
-                            const activeLink = document.querySelector(`.navegacion a[href="#${id}"]`);
-                            
-                            if (activeLink) {
-                                activeLink.classList.add('activo');
-                            }
+                            document.querySelector(`.navegacion a[href="#${id}"]`)?.classList.add('activo');
                         }
                     });
                 }, observerOptions);
-
-                secciones.forEach(seccion => {
-                    observer.observe(seccion);
-                });
+                secciones.forEach(seccion => observer.observe(seccion));
             }
         });
-    </script>
 
-    <!-- SCRIPT SERVICE WORKER -->
-    <script>
+        // --- Service Worker ---
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
-    </script>
 
-    <!-- SCRIPT BOTÓN INSTALAR PWA -->
-    <script>
+        // --- Botón instalar PWA ---
         function esDispositivoMovil() {
-            if (navigator.userAgentData && navigator.userAgentData.mobile) return true;
+            if (navigator.userAgentData?.mobile) return true;
             if ('ontouchstart' in window) return true;
             if (window.matchMedia("(max-width: 767px)").matches) return true;
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
-
         let deferredPrompt;
         const contenedorInstalar = document.getElementById('contenedor-instalar');
         const botonInstalar = document.getElementById('boton-instalar');
-
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
@@ -689,20 +620,13 @@
                 contenedorInstalar.classList.add('visible');
             }
         });
-
-        if (botonInstalar && contenedorInstalar) {
-            botonInstalar.addEventListener('click', (e) => {
-                contenedorInstalar.classList.remove('visible');
-                
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        console.log(`User ${choiceResult.outcome} the A2HS prompt`);
-                        deferredPrompt = null;
-                    });
-                }
-            });
-        }
+        botonInstalar?.addEventListener('click', () => {
+            contenedorInstalar.classList.remove('visible');
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+            }
+        });
     </script>
 </body>
 
