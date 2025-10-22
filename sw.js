@@ -2,7 +2,7 @@ const CACHE_NAME = 'cuasi-coromoto-cache-v2';
 // Define la base de la URL para tu subdirectorio en GitHub Pages
 const BASE_URL = '/cuasicoromoto';
 
-// Lista de archivos que queremos que se guarden en caché.
+// Lista de archivos que queremos que se guarden en caché durante la instalación.
 const urlsToCache = [
   // --- Archivos Principales ---
   `${BASE_URL}/`, 
@@ -17,7 +17,6 @@ const urlsToCache = [
   `${BASE_URL}/iconos/icon-512x512.png`,
 
   // --- Fuentes Tipográficas ---
-  // Asegúrate de revisar que estas rutas sean las mismas que usas en tu CSS
   `${BASE_URL}/fonts/Lora-Bold.ttf`,
   `${BASE_URL}/fonts/Montserrat-Light.ttf`,
   `${BASE_URL}/fonts/Montserrat-Regular.ttf`,
@@ -32,32 +31,29 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Service Worker: Cache abierto, añadiendo archivos principales y fuentes.');
-        // Usamos addAll para añadir todos los archivos de nuestra lista al caché.
+        console.log('Service Worker: Cache abierto, añadiendo archivos principales.');
         return cache.addAll(urlsToCache);
       })
       .then(() => {
-        // Forza al Service Worker a activarse inmediatamente.
+        // Forza al nuevo Service Worker a activarse inmediatamente en lugar de esperar.
         self.skipWaiting(); 
       })
       .catch(error => {
-        // Si algo falla al cachear, lo mostramos en la consola.
-        // Esto es muy útil para depurar si una ruta de archivo está mal escrita.
         console.error('Service Worker: Falló el cacheo en la instalación:', error);
       })
   );
 });
 
 // 2. Evento 'activate': Se dispara cuando el Service Worker se activa.
-// Sirve para limpiar cachés antiguos.
+// Es el momento ideal para limpiar cachés antiguos y asegurar consistencia.
 self.addEventListener('activate', event => {
   console.log('Service Worker: Activado');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          // Si el nombre del caché no es el que hemos definido (CACHE_NAME), lo borramos.
-          // Esto ocurre cuando actualizamos la versión del caché (de v1 a v2).
+          // Si el nombre de un caché no coincide con el CACHE_NAME actual, se elimina.
+          // Esto es crucial para eliminar versiones antiguas de los archivos cacheados.
           if (cacheName !== CACHE_NAME) {
             console.log('Service Worker: Limpiando caché antiguo:', cacheName);
             return caches.delete(cacheName);
@@ -65,31 +61,44 @@ self.addEventListener('activate', event => {
         })
       );
     })
+    .then(() => {
+        // Asegura que el Service Worker tome el control de la página de inmediato.
+        return self.clients.claim();
+    })
   );
-  // Asegura que el Service Worker tome el control inmediato de la página.
-  return self.clients.claim();
 });
 
-// 3. Evento 'fetch': Intercepta todas las peticiones de red.
+// 3. Evento 'fetch': Intercepta todas las peticiones de red (imágenes, CSS, etc.).
+// Aquí implementamos la estrategia "Stale-While-Revalidate".
 self.addEventListener('fetch', event => {
-  // Solo aplicamos la estrategia de caché para peticiones GET (no POST, etc.)
+  // Ignoramos peticiones que no sean GET, como las de tipo POST.
   if (event.request.method !== 'GET') {
     return;
   }
   
   event.respondWith(
-    // Primero, busca el recurso en el caché.
-    caches.match(event.request)
-      .then(response => {
-        // Si la respuesta está en el caché, la devolvemos.
-        if (response) {
-          //console.log('Service Worker: Sirviendo desde caché:', event.request.url);
-          return response;
-        }
+    caches.open(CACHE_NAME).then(cache => {
+      // 1. Primero, intenta responder desde el caché para una carga rápida.
+      return cache.match(event.request).then(cachedResponse => {
         
-        // Si no está en el caché, vamos a la red a buscarlo.
-        //console.log('Service Worker: Sirviendo desde red:', event.request.url);
-        return fetch(event.request);
-      })
+        // 2. En paralelo, busca una versión actualizada en la red.
+        const fetchPromise = fetch(event.request).then(networkResponse => {
+          // Si la petición a la red es exitosa, la clonamos y actualizamos el caché.
+          // Hacemos esto para que la próxima visita ya tenga la versión más reciente.
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        }).catch(error => {
+          // Es importante manejar errores de red, especialmente en modo offline.
+          console.error('Service Worker: Fallo en la petición fetch:', error);
+          // Aquí se podría devolver una página de fallback si fuera necesario.
+        });
+
+        // 3. Devolvemos la respuesta del caché si existe (respuesta inmediata).
+        // Si no está en caché (por ejemplo, la primera vez que se visita),
+        // esperamos a que la promesa de la red se resuelva.
+        // El usuario obtiene la versión guardada al instante, mientras la app se actualiza en segundo plano.
+        return cachedResponse || fetchPromise;
+      });
+    })
   );
 });
