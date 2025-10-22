@@ -1,0 +1,21 @@
+{
+  "name": "Cuasiparroquia Ntra. Sra. de Coromoto",
+  "short_name": "CuasiCoromoto",
+  "description": "Página oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Horarios, actividades y más.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#800020",
+  "theme_color": "#800020",
+  "icons": [
+    {
+      "src": "iconos/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "iconos/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

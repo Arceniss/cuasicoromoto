@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Página oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Encuentra horarios de misas, actividades, sacramentos, y formas de contacto y donación.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#800020">
+
+    <title>Cuasiparroquia Nuestra Señora de Coromoto</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+        <div class="contenedor-central">
+            <div class="logo">
+                <p class="titulo-secundario">CUASIPARROQUIA e</p>
+                <h1 class="titulo-principal">Nuestra Señora de Coromoto</h1>
+            </div>
+            <nav class="navegacion">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#historia">Historia</a></li>
+                    <li><a href="#horarios">Horarios</a></li>
+                    <li><a href="#sacramentos">Sacramentos</a></li>
+                    <li><a href="#apostolado">Apostolado</a></li>
+                    <li><a href="#obras">Obras</a></li>
+                    <li><a href="#contactos">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="boton-hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+                <span class="linea"></span>
+                <span class="linea"></span>
+                <span class="linea"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- INICIO -->
+        <section id="inicio" class="seccion">
+            <div class="contenedor-central">
+                <div id="contenedor-instalar">
+                    <button id="boton-instalar">
+                        📥 Instalar Aplicación
+                    </button>
+                </div>
+                <h2 class="titulo-seccion">Bienvenidos</h2>
+                <div class="subseccion">
+                    <h3 class="titulo-subseccion">Comunidad de comunidades<span class="icono"
+                            aria-hidden="true">⛪</span></h3>
+                    <div class="subseccion-texto">
+                        <p>¡Bienvenidos a la plataforma virtual de la Cuasiparroquia Nuestra Señora de Coromoto!
+                        <br><br>Esta es tu guía digital para encontrar horarios de celebraciones, servicios y actividades. Te invitamos a explorar, participar en nuestros grupos y sentirte parte de esta familia de fe.
+                        <br><br>¡Explora, participa y siéntete en casa!</p>
+                    </div>
+                </div>
+                <div class="subseccion">
+                    <h3 class="titulo-subseccion">Próximas actividades<span class="icono" aria-hidden="true">🗓️</span>
+                    </h3>
+                    <div class="carrusel-contenedor">
+                        <div class="contenedor-actividades">
+                            <div class="tarjeta-actividad">
+                                <div class="actividad-fecha"><span class="dia">22</span><span class="mes">JUN</span>
+                                </div>
+                                <div class="actividad-info">
+                                    <h4>Concierto con Abba</h4>
+                                    <p>Domingo, a las 10:30 AM<br>En la Capilla San José</p>
+                                </div>
+                            </div>
+                            <div class="tarjeta-actividad">
+                                <div class="actividad-fecha"><span class="dia">23</span><span class="mes">JUN</span>
+                                </div>
+                                <div class="actividad-info">
+                                    <h4>Procesión Corpus Christi</h4>
+                                    <p>Lunes, a la 1:00 PM<br>En la Capilla San José</p>
+                                </div>
+                            </div>
+                            <div class="tarjeta-actividad">
+                                <div class="actividad-fecha"><span class="dia">24</span><span class="mes">JUN</span>
+                                </div>
+                                <div class="actividad-info">
+                                    <h4>Procesión Corpus Christi</h4>
+                                    <p>Lunes, a la 1:00 PM<br>En la Capilla San José</p>
+                                </div>
+                            </div>
+                            <div class="tarjeta-actividad">
+                                <div class="actividad-fecha"><span class="dia">26</span><span class="mes">JUN</span>
+                                </div>
+                                <div class="actividad-info">
+                                    <h4>Procesión Corpus Christi</h4>
+                                    <p>Lunes, a la 1:00 PM<br>En la Capilla San José</p>
+                                </div>
+                            </div>
+                            <div class="tarjeta-actividad">
+                                <div class="actividad-fecha"><span class="dia">28</span><span class="mes">JUN</span>
+                                </div>
+                                <div class="actividad-info">
+                                    <h4>Reunión de Catequistas</h4>
+                                    <p>Sábado, a las 3:00 PM<br>En la Casa del Amigo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="carrusel-btn-prev" class="carrusel-boton" aria-label="Actividad anterior">‹</button>
+                        <button id="carrusel-btn-next" class="carrusel-boton"
+                            aria-label="Siguiente actividad">›</button>
+                        <div class="actividades-indicadores carrusel-indicadores"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORIA -->
+        <section id="historia" class="seccion">
+            <div class="contenedor-central">
+                <h2 class="titulo-seccion">Historia</h2>
+                <div class="subseccion">
+                    <h3 class="titulo-subseccion">Breve reseña<span class="icono" aria-hidden="true">📜</span></h3>
+                    <div class="subseccion-texto">
+                        <p>Desde los años 70, el Padre Luis María Igartúa impulsó la vida pastoral en comunidades periféricas de Los Teques, fundando capillas a lo largo de su geografía y una "Escuela Granja" en la comunidad de Guaremal. En los 90, su obra floreció en el "Complejo Casa del Amigo", que hoy día alberga servicios médicos, educativos, hogar para los abuelos y la Capilla San José.
+                        <br><br>Tras su fallecimiento en 2008, su legado continuó con los Padres Donato Porras y José Antonio Ugartemendía. En 2012, la comunidad fue elevada a Cuasiparroquia por el Obispo, Monseñor Freddy Jesús Fuenmayor. Actualmente, el Diácono Arcenis Soto es su Delegado Pastoral.
+                        <br><br>La Cuasiparroquia abarca 14 km de la Carretera Panamericana, desde Los Alpes hasta los límites con el estado bolivariano de Aragua, con sus sectores y caseríos. Cuenta con cinco capillas activas, y entre ellas, la Capilla San José es la sede principal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HORARIOS -->
+        <section id="horarios" class="seccion">
+            <div class="contenedor-central">
+                <h2 class="titulo-seccion">Horarios</h2>
+                <div class="carrusel-contenedor">
+                    <div class="contenedor-tarjetas">
+                        <div class="tarjeta-base tarjeta-horario">
+                            <h4 class="tarjeta-titulo">Capilla Nuestra<br>Señora del Carmen</h4>
+                            <table class="tabla-horarios"><tbody><tr><td class="hora">08:00am</td><td>Conversatorio de la Fe.</td></tr><tr><td class="hora">08:30am</td><td>Celebración de la Palabra.</td></tr><tr><td class="hora">09:30am</td><td>Catequesis.</td></tr></tbody></table><!--<p>Todos los sábados.</p>-->
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-horario">
+                            <h4 class="tarjeta-titulo">Capilla Nuestra<br>Señora de la Asunción</h4>
+                            <table class="tabla-horarios"><tbody><tr><td class="hora">09:00am</td><td>Catequesis.</td></tr><tr><td class="hora">10:00am</td><td>Conversatorio de la Fe.</td></tr><tr><td class="hora">10:30am</td><td>Celebración de la Palabra.</td></tr></tbody></table><!--<p>Todos los sábados.</p>-->
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-horario">
+                            <h4 class="tarjeta-titulo">Capilla Nuestra<br>Señora de los Dolores</h4>
+                            <table class="tabla-horarios"><tbody><tr><td class="hora">02:00pm</td><td>Conversatorio de la Fe.</td></tr><tr><td class="hora">02:30pm</td><td>Celebración de la Palabra.</td></tr><tr><td class="hora">03:30pm</td><td>Catequesis.</td></tr></tbody></table><!--<p>Todos los sábados.</p>-->
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-horario">
+                            <h4 class="tarjeta-titulo">Capilla Jesús de la<br>Divina Misericordia</h4>
+                            <table class="tabla-horarios"><tbody><tr><td class="hora">04:00pm</td><td>Conversatorio de la Fe.</td></tr><tr><td class="hora">04:30pm</td><td>Celebración de la Palabra.</td></tr><tr><td class="hora">05:30pm</td><td>Catequesis.</td></tr></tbody></table><!--<p>Todos los sábados.</p>-->
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-horario">
+                            <h4 class="tarjeta-titulo">Comunidad<br>María Auxiliadora</h4>
+                            <table class="tabla-horarios"><tbody><tr><td class="hora">05:00pm</td><td>Catequesis.</td></tr><tr><td class="hora">06:00pm</td><td>Conversatorio de la Fe.</td></tr><tr><td class="hora">06:30pm</td><td>Celebración de la Palabra.</td></tr></tbody></table><!--<p>Sábados quincenales.</p>-->
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-horario">
+                            <h4 class="tarjeta-titulo">Capilla<br>San José</h4>
+                            <table class="tabla-horarios"><tbody><tr><td class="hora">10:30am</td><td>Catequesis.</td></tr><tr><td class="hora">10:30am</td><td>Conversatorio de la Fe.</td></tr><tr><td class="hora">12:00pm</td><td>Celebración de la Palabra.</td></tr></tbody></table><!--<p>Todos los domingos.</p>-->
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="horarios-btn-prev" class="carrusel-boton" aria-label="Horario anterior">‹</button>
+                    <button id="horarios-btn-next" class="carrusel-boton" aria-label="Siguiente Horario">›</button>
+                    <div class="horarios-indicadores carrusel-indicadores"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SACRAMENTOS -->
+        <section id="sacramentos" class="seccion">
+            <div class="contenedor-central">
+                <h2 class="titulo-seccion">Sacramentos</h2>
+                <div class="carrusel-contenedor">
+                    <div class="contenedor-tarjetas">
+                        <div class="tarjeta-base tarjeta-sacramentos"><h4 class="tarjeta-titulo">Bautizo <span aria-hidden="true">🕊️</span></h4><ul><li>Partida de nacimiento del niño/a.</li><li>Cédula de identidad de los padrinos.</li><li>01 padrino y 01 madrina, católicos.</li></ul><p>Presente estos documentos en la Capilla a la que pertenece para coordinar.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-sacramentos"><h4 class="tarjeta-titulo">Comunión <span aria-hidden="true">🍞</span></h4><ul><li>Fe de Bautismo.</li><li>Representante legal.</li><li>Asistir a la catequesis (2 años).</li></ul><p>Inscripciones durante el mes de octubre, en la Capilla a la que pertenece.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-sacramentos"><h4 class="tarjeta-titulo">Confirmación <span aria-hidden="true">🔥</span></h4><ul><li>Bautismo y Comunión.</li><li>Edad mínima de 13 años.</li><li>Asistir la Catequesis (1 año).</li></ul><p>Inscripciones durante el mes de octubre, en la Capilla a la que pertenece.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-sacramentos"><h4 class="tarjeta-titulo">Confesión <span aria-hidden="true">🙏</span></h4><ul><li>Haber recibido el Bautismo.</li><li>Acercarse con corazón arrepentido.</li><li>Propósito de no volver a pecar.</li></ul><p>En las visitas que algunos sacerdotes, a veces hacen a nuestras comunidades, se puede solicitar el sacramento.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-sacramentos"><h4 class="tarjeta-titulo">Unción de los enfermos <span aria-hidden="true">🌿</span></h4><ul><li>Haber recibido el Bautismo.</li><li>Para enfermedad o edad avanzada.</li><li>Solicitar al Delegado Pastoral.</li></ul><p>Se ha coordinar, según disponibilidad, con el Delegado Pastoral y los sacerdotes de nuestra Diócesis.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-sacramentos"><h4 class="tarjeta-titulo">Matrimonio <span aria-hidden="true">💍</span></h4><ul><li>Fe de Bautismo.</li><li>Constancia de confirmación.</li><li>Acta de matrimonio civil.</li></ul><p>Tras aperturar el expediente matrimonial, se coordinará con el Delegado Pastoral.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="sacramentos-btn-prev" class="carrusel-boton" aria-label="Sacramento anterior">‹</button>
+                    <button id="sacramentos-btn-next" class="carrusel-boton" aria-label="Siguiente Sacramento">›</button>
+                    <div class="sacramentos-indicadores carrusel-indicadores"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APOSTOLADO -->
+        <section id="apostolado" class="seccion">
+            <div class="contenedor-central">
+                <h2 class="titulo-seccion">¡Únete a un Grupo!</h2>
+                <div class="carrusel-contenedor">
+                    <div class="contenedor-tarjetas">
+                        <div class="tarjeta-base tarjeta-apostolado"><h4 class="tarjeta-titulo">Cáritas <span aria-hidden="true">❤️</span></h4><p>Ayuda fraterna y desinteresada para aquellos que más lo necesitan.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-apostolado"><h4 class="tarjeta-titulo">Catequesis <span aria-hidden="true">📖</span></h4><p>Forma en la fe a niños y jóvenes para recibir los sacramentos de iniciación.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-apostolado"><h4 class="tarjeta-titulo">Ministerio de Música <span aria-hidden="true">🎶</span></h4><p>Alaba a Dios con tu voz e instrumento, enriqueciendo la liturgia con tus dones.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-apostolado"><h4 class="tarjeta-titulo">Servidores del Altar <span aria-hidden="true">🕯️</span></h4><p>Asiste dignamente al sacerdote y al diácono en la celebración litúrgica.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta-base tarjeta-apostolado"><h4 class="tarjeta-titulo">Grupo Juvenil<span aria-hidden="true">🚀</span></h4><p>Desarrolla tus capacidades y crece en fe, amistad y acción con otros jóvenes.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="tarjeta-base tarjeta-apostolado"><h4 class="tarjeta-titulo">Grupo Másters <span aria-hidden="true">☕</span></h4><p>Desarrolla tus capacidades y crece en fe, amistad y acción con personas adultas.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="apostolado-btn-prev" class="carrusel-boton" aria-label="Grupo anterior">‹</button>
+                    <button id="apostolado-btn-next" class="carrusel-boton" aria-label="Siguiente Grupo">›</button>
+                    <div class="apostolado-indicadores carrusel-indicadores"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OBRAS -->
+        <section id="obras" class="seccion">
+            <div class="contenedor-central">
+                <h2 class="titulo-seccion">Obras para el Servicio</h2>
+                <div class="carrusel-contenedor">
+                    <div class="contenedor-tarjetas">
+
+                        <!-- Tarjeta 1: Casa de Retiros -->
+                        <div class="tarjeta-base tarjeta-apostolado">
+                            <h4 class="tarjeta-titulo">Casa de <br>Retiros y Convivencias<span class="icono" aria-hidden="true">🏡</span></h4>
+                            <p>Un espacio de paz destinado a grupos y comunidades para realizar retiros, convivencias y jornadas de formación.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 2: Ancianato -->
+                        <div class="tarjeta-base tarjeta-apostolado">
+                            <h4 class="tarjeta-titulo">Ancianato <br>"Casa del Amigo"<span class="icono" aria-hidden="true">👴</span></h4>
+                            <p>Un hogar digno para adultos mayores, en el que la caridad alcanza su propósito de servicio, la ternura de Dios en cada gesto.</p>
+                            <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 3: Columbario -->
+                        <div class="tarjeta-base tarjeta-apostolado">
+                            <h4 class="tarjeta-titulo">Columbario <br>"Lugar de Descanso"<span class="icono" aria-hidden="true">🕊️</span></h4>
+                            <p>Un lugar sagrado donde las cenizas de nuestros seres queridos reposan en paz y la memoria se convierte en oración.</p>
+                             <div class="foto-contenedor">
+                                <div class="foto-placeholder">
+                                    Foto
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Botones de Navegación del Carrusel -->
+                    <button id="obras-btn-prev" class="carrusel-boton" aria-label="Obra anterior">‹</button>
+                    <button id="obras-btn-next" class="carrusel-boton" aria-label="Siguiente Obra">›</button>
+                    <!-- Indicadores de Paginación del Carrusel -->
+                    <div class="obras-indicadores carrusel-indicadores"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTOS -->
+        <section id="contactos" class="seccion">
+            <div class="contenedor-central">
+                <h2 class="titulo-seccion">Contacto y Donaciones</h2>
+                <div class="subseccion">
+                    <h3 class="titulo-subseccion">¡Conversemos!<span class="icono" aria-hidden="true">📞</span></h3>
+                    <p><strong>Dirección:</strong> Calle Principal de Guaremal, sector "Los Jabillos", Complejo Casa del Amigo.<br><strong>Teléfono:</strong> (+58) 0414-2711341.<br><strong>Email:</strong> cuasicoromoto@gmail.com</p>
+                </div>
+                <div class="subseccion">
+                    <h3 class="titulo-subseccion">Apoya Nuestra Misión<span class="icono" aria-hidden="true">💖</span></h3>
+                    <p>Tu generosidad nos ayuda a continuar. Puedes apoyarnos mediante transferencia o pago móvil:</p>
+                    <div class="carrusel-contenedor">
+                        <div class="contenedor-tarjetas">
+                            <div class="tarjeta-base tarjeta-contacto">
+                                <h4 class="tarjeta-titulo">Depósito o Transferencias</h4>
+                                <div><table class="tabla-pagos"><tbody><tr><td class="datos"><strong>Banco:</strong></td><td>Bancamiga.</td></tr><tr><td class="datos"><strong>Cuenta Cte:</strong></td><td>0172 0131 0113 1578 4742.</td></tr><tr><td class="datos"><strong>A nombre de:</strong></td><td style="line-height: 1;">Cuasiparroquia<br>Nuestra Señora de Coromoto.</td></tr><tr><td class="datos"><strong>RIF:</strong></td><td>J - 505 929 760.</td></tr></tbody></table></div>
+                            </div>
+                            <div class="tarjeta-base tarjeta-contacto">
+                                <h4 class="tarjeta-titulo">Pago Móvil</h4>
+                                <div><table class="tabla-pagos"><tbody><tr><td class="datos"><strong>Banco: </strong></td><td>0172 (Bancamiga).</td></tr><tr><td class="datos"><strong>Identidad: </strong></td><td>504929760 (Comercio).</td></tr><tr><td class="datos"><strong>Teléfono: </strong></td><td>0414-2711341.</td></tr></tbody></table></div>
+                                <p>¡MUCHÍSIMAS GRACIAS!</p>
+                                <p>¡Dios les multiplique abundantemente!</p>
+                            </div>
+                        </div>
+                        <button id="contactos-btn-prev" class="carrusel-boton" aria-label="Método de pago anterior">‹</button>
+                        <button id="contactos-btn-next" class="carrusel-boton" aria-label="Siguiente método de pago">›</button>
+                        <div class="contactos-indicadores carrusel-indicadores"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- BOTONES FLOTANTES DE NAVEGACIÓN -->
+        <div id="botones-flotantes">
+            <button id="boton-subir-seccion" class="boton-flotante oculto" aria-label="Ir a la sección anterior">
+                ▲
+            </button>
+            <button id="boton-bajar-seccion" class="boton-flotante" aria-label="Ir a la siguiente sección">
+                ▼
+            </button>
+        </div>
+        
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie-pagina">
+        <div class="contenedor-central">
+            <p>
+                DIÓCESIS DE LOS TEQUES<br>
+                VICARÍA NUESTRA SEÑORA DE LA ASUNCIÓN<br>
+                <strong>Cuasiparroquia Nuestra Señora de Coromoto</strong><br>
+                - 2025 -
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT CARRUSEL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function inicializarCarrusel(config) {
+                const contenedor = document.querySelector(config.containerSelector);
+                const btnPrev = document.getElementById(config.prevBtnId);
+                const btnNext = document.getElementById(config.nextBtnId);
+                const indicadoresContenedor = document.querySelector(config.indicatorsSelector);
+
+                if (!contenedor || !indicadoresContenedor) return;
+
+                let numSlides = 0;
+                let slideWidth = 0;
+                let currentIndex = 0;
+
+                const setupCarousel = () => {
+                    const esMovil = window.innerWidth <= 767;
+                    const primerItem = contenedor.querySelector(':first-child');
+                    if (!primerItem) return;
+
+                    const gap = 16; // 1rem
+                    const containerWidth = contenedor.clientWidth;
+                    const totalItems = contenedor.children.length;
+
+                    if (esMovil) {
+                        slideWidth = primerItem.offsetWidth + gap;
+                        numSlides = totalItems;
+                    } else {
+                        slideWidth = containerWidth;
+                        const itemsPerPage = 2; // Basado en el CSS 'flex-basis: calc(50% - 0.5rem)'
+                        numSlides = Math.ceil(totalItems / itemsPerPage);
+                    }
+                    
+                    const carruselContenedor = contenedor.closest('.carrusel-contenedor');
+                    if (carruselContenedor) {
+                        if (numSlides <= 1) {
+                            carruselContenedor.classList.add('no-scroll');
+                        } else {
+                            carruselContenedor.classList.remove('no-scroll');
+                        }
+                    }
+
+                    indicadoresContenedor.innerHTML = '';
+                    if (numSlides > 1) {
+                        for (let i = 0; i < numSlides; i++) {
+                            const dot = document.createElement('button');
+                            dot.classList.add('carrusel-dot');
+                            dot.setAttribute('aria-label', `Ir a la página ${i + 1}`);
+                            dot.addEventListener('click', () => {
+                                const scrollPos = i * slideWidth;
+                                contenedor.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                            });
+                            indicadoresContenedor.appendChild(dot);
+                        }
+                    }
+                    updateIndicators();
+                };
+
+                const updateIndicators = () => {
+                    const esMovil = window.innerWidth <= 767;
+                    const primerItem = contenedor.querySelector(':first-child');
+                    if (!primerItem) return;
+
+                    const scrollUnit = esMovil ? (primerItem.offsetWidth + 16) : contenedor.clientWidth;
+                    
+                    if (numSlides <= 1 || scrollUnit === 0) return;
+                    
+                    currentIndex = Math.round(contenedor.scrollLeft / scrollUnit);
+                    
+                    const dots = indicadoresContenedor.querySelectorAll('.carrusel-dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('activo', index === currentIndex);
+                    });
+                };
+                
+                if (btnPrev) {
+                    btnPrev.addEventListener('click', () => {
+                         if (currentIndex === 0) {
+                            const maxScrollLeft = contenedor.scrollWidth - contenedor.clientWidth;
+                            contenedor.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+                         } else {
+                            contenedor.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+                         }
+                    });
+                }
+
+                if (btnNext) {
+                    btnNext.addEventListener('click', () => {
+                        if (currentIndex >= numSlides - 1) {
+                            contenedor.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            contenedor.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                        }
+                    });
+                }
+
+                let scrollTimer;
+                contenedor.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimer);
+                    scrollTimer = setTimeout(updateIndicators, 150);
+                });
+
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(setupCarousel, 250);
+                });
+
+                setupCarousel();
+            }
+
+            inicializarCarrusel({ containerSelector: '.contenedor-actividades', prevBtnId: 'carrusel-btn-prev', nextBtnId: 'carrusel-btn-next', indicatorsSelector: '.actividades-indicadores' });
+            inicializarCarrusel({ containerSelector: '#horarios .contenedor-tarjetas', prevBtnId: 'horarios-btn-prev', nextBtnId: 'horarios-btn-next', indicatorsSelector: '.horarios-indicadores' });
+            inicializarCarrusel({ containerSelector: '#sacramentos .contenedor-tarjetas', prevBtnId: 'sacramentos-btn-prev', nextBtnId: 'sacramentos-btn-next', indicatorsSelector: '.sacramentos-indicadores' });
+            inicializarCarrusel({ containerSelector: '#apostolado .contenedor-tarjetas', prevBtnId: 'apostolado-btn-prev', nextBtnId: 'apostolado-btn-next', indicatorsSelector: '.apostolado-indicadores' });
+            inicializarCarrusel({ containerSelector: '#contactos .subseccion .contenedor-tarjetas', prevBtnId: 'contactos-btn-prev', nextBtnId: 'contactos-btn-next', indicatorsSelector: '.contactos-indicadores' });
+            inicializarCarrusel({ containerSelector: '#obras .contenedor-tarjetas', prevBtnId: 'obras-btn-prev', nextBtnId: 'obras-btn-next', indicatorsSelector: '.obras-indicadores' });
+        });
+    </script>
+
+    <!-- SCRIPT BOTONES FLOTANTES -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Este script ahora se ejecuta siempre, pero los botones solo son
+            // visibles en móvil gracias al CSS. Esto asegura que siempre funcionen.
+            const secciones = Array.from(document.querySelectorAll('main .seccion'));
+            const btnSubir = document.getElementById('boton-subir-seccion');
+            const btnBajar = document.getElementById('boton-bajar-seccion');
+            let indiceSeccionActual = 0;
+
+            const actualizarBotones = () => {
+                if (!btnSubir || !btnBajar) return;
+                
+                btnSubir.classList.toggle('oculto', indiceSeccionActual === 0);
+                btnBajar.classList.toggle('oculto', indiceSeccionActual === secciones.length - 1);
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const seccionVisible = entry.target;
+                        indiceSeccionActual = secciones.indexOf(seccionVisible);
+                        actualizarBotones();
+                    }
+                });
+            }, { threshold: 0.4 }); 
+
+            if (secciones.length > 0) {
+                secciones.forEach(seccion => observer.observe(seccion));
+            }
+
+            if (btnSubir) {
+                btnSubir.addEventListener('click', () => {
+                    if (indiceSeccionActual > 0) {
+                        secciones[indiceSeccionActual - 1].scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            if (btnBajar) {
+                btnBajar.addEventListener('click', () => {
+                    if (indiceSeccionActual < secciones.length - 1) {
+                        secciones[indiceSeccionActual + 1].scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- SCRIPT MENÚ HAMBURGUESA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botonMenu = document.querySelector('.boton-hamburguesa');
+            const navegacion = document.querySelector('.navegacion');
+            const enlacesMenu = document.querySelectorAll('.navegacion a');
+            const body = document.body;
+
+            if (botonMenu && navegacion) {
+                botonMenu.addEventListener('click', () => {
+                    navegacion.classList.toggle('menu-abierto');
+                    botonMenu.classList.toggle('activo');
+                    body.classList.toggle('menu-abierto-body');
+                    botonMenu.setAttribute('aria-expanded', navegacion.classList.contains('menu-abierto'));
+                });
+
+                enlacesMenu.forEach(enlace => {
+                    enlace.addEventListener('click', () => {
+                        if (navegacion.classList.contains('menu-abierto')) {
+                            navegacion.classList.remove('menu-abierto');
+                            botonMenu.classList.remove('activo');
+                            body.classList.remove('menu-abierto-body');
+                            botonMenu.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    <!-- SCRIPT NAVEGACIÓN ACTIVA (PC) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Este script se ejecuta solo en la vista de escritorio.
+            if (window.innerWidth > 767) {
+                const secciones = document.querySelectorAll('.seccion');
+                const navLinks = document.querySelectorAll('.navegacion a');
+                
+                // Establece "Inicio" como activo al cargar la página.
+                const linkInicio = document.querySelector('.navegacion a[href="#inicio"]');
+                if (linkInicio) {
+                    linkInicio.classList.add('activo');
+                }
+
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.50 
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('activo');
+                            });
+                            
+                            const id = entry.target.getAttribute('id');
+                            const activeLink = document.querySelector(`.navegacion a[href="#${id}"]`);
+                            
+                            if (activeLink) {
+                                activeLink.classList.add('activo');
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                secciones.forEach(seccion => {
+                    observer.observe(seccion);
+                });
+            }
+        });
+    </script>
+
+    <!-- SCRIPT SERVICE WORKER -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+
+    <!-- SCRIPT BOTÓN INSTALAR PWA -->
+    <script>
+        function esDispositivoMovil() {
+            if (navigator.userAgentData && navigator.userAgentData.mobile) return true;
+            if ('ontouchstart' in window) return true;
+            if (window.matchMedia("(max-width: 767px)").matches) return true;
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        let deferredPrompt;
+        const contenedorInstalar = document.getElementById('contenedor-instalar');
+        const botonInstalar = document.getElementById('boton-instalar');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (esDispositivoMovil() && contenedorInstalar) {
+                contenedorInstalar.classList.add('visible');
+            }
+        });
+
+        if (botonInstalar && contenedorInstalar) {
+            botonInstalar.addEventListener('click', (e) => {
+                contenedorInstalar.classList.remove('visible');
+                
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        console.log(`User ${choiceResult.outcome} the A2HS prompt`);
+                        deferredPrompt = null;
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
