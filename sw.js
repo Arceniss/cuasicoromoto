@@ -1,6 +1,6 @@
 // IMPORTANTE: Cambia la versión del caché cada vez que quieras forzar una actualización de contenido.
 // Por ejemplo, de 'v2' a 'v3', luego a 'v4', etc.
-const CACHE_NAME = 'cuasi-coromoto-cache-v2';
+const CACHE_NAME = 'cuasi-coromoto-cache-v0.1';
 
 const BASE_URL = '/cuasicoromoto';
 

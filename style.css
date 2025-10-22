@@ -93,7 +93,7 @@ body {
     border-bottom: 1px solid #e0e0e0;
     scroll-margin-top: var(--header-height); /* <-- CORRECCIÓN PARA EL SCROLL MÓVIL */
 }
-#inicio.seccion { padding-top: 30px; min-height: calc(100vh - var(--header-height)); }
+#inicio.seccion { padding-top: 30px; }
 .seccion:nth-of-type(even) { background: var(--color-fondo-alterno); }
 .seccion:last-of-type { border-bottom: none; }
 .titulo-seccion {
