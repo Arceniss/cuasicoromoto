@@ -77,6 +77,9 @@ body {
     font-size: 16px;
     line-height: 1.4;
     padding-top: 80px;
+
+    padding-top: var(--header-height); 
+    min-height: 0;
 }
 
 /* ==========================================================================
@@ -88,10 +91,11 @@ body {
     padding: 0 25px;
 }
 .seccion {
+    min-height: calc(100vh - var(--header-height));
     padding: 70px 0;
     border-bottom: 1px solid #e0e0e0;
 }
-#inicio.seccion { padding-top: 30px; }
+#inicio.seccion { padding-top: 30px; min-height: calc(100vh - var(--header-height)); }
 .seccion:nth-of-type(even) { background: var(--color-fondo-alterno); }
 .seccion:last-of-type { border-bottom: none; }
 .titulo-seccion {
