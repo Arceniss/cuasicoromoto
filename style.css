@@ -1,7 +1,7 @@
 /* ==========================================================================
    REGLAS @font-face PARA FUENTES LOCALES
    ========================================================================== */
-   @font-face {
+@font-face {
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
@@ -73,13 +73,12 @@ body {
     font-family: var(--fuente-cuerpo);
     background: var(--color-fondo-principal);
     color: var(--color-texto-principal);
-    font-size: 16px;
     line-height: 1.4;
     padding-top: var(--header-height); 
     min-height: 0;
 }
 
-/* ==========================================================================
+/* =================================================================
     2. ESTRUCTURA Y MAQUETACIÓN PRINCIPAL
    ========================================================================== */
 .contenedor-central {
@@ -89,11 +88,10 @@ body {
 }
 .seccion {
     min-height: calc(100vh - var(--header-height));
-    padding: 70px 0;
+    padding: 40px 0;
     border-bottom: 1px solid #e0e0e0;
-    scroll-margin-top: var(--header-height); /* <-- CORRECCIÓN PARA EL SCROLL MÓVIL */
+    scroll-margin-top: var(--header-height); 
 }
-#inicio.seccion { padding-top: 70px; }
 .seccion:nth-of-type(even) { background: var(--color-fondo-alterno); }
 .seccion:last-of-type { border-bottom: none; }
 .titulo-seccion {
@@ -158,6 +156,10 @@ body {
     line-height: 1.1;
     z-index: 1001;
 }
+.logo-link {
+    text-decoration: none; 
+    color: var(--color-texto-claro);
+}
 .titulo-principal { font-weight: 700; font-size: 1.5rem; }
 .titulo-secundario { font-weight: 400; font-size: 0.8rem; letter-spacing: 0.15em; }
 .navegacion ul {
@@ -217,22 +219,18 @@ body {
 
 /* --- CARRUSEL GENERAL --- */
 .carrusel-contenedor { position: relative; }
-.contenedor-actividades,
 .contenedor-tarjetas {
     display: flex;
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    padding-top: 10px;
     padding-bottom: 1.5rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-top: 10px;
 }
-.contenedor-actividades::-webkit-scrollbar,
 .contenedor-tarjetas::-webkit-scrollbar { display: none; }
-.tarjeta-actividad,
-.tarjeta-base { scroll-snap-align: start; }
 .tarjeta-actividad {
     min-width: 290px;
     display: flex;
@@ -243,6 +241,7 @@ body {
     border-radius: var(--radio-borde);
     border-left: 2px solid var(--color-vinotinto-profundo);
     transition: transform 0.3s, box-shadow 0.3s;
+    scroll-snap-align: start;
 }
 .tarjeta-actividad:hover {
     transform: translateY(-5px);
@@ -323,12 +322,17 @@ body {
 
 /* --- TARJETAS GENÉRICAS --- */
 .tarjeta-base {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     flex-shrink: 0;
     background: var(--color-fondo-alterno);
     padding: 1rem;
     border-radius: var(--radio-borde);
     box-shadow: 0 6px 20px rgba(0,0,0,0.06);
     transition: transform 0.3s, box-shadow 0.3s;
+    scroll-snap-align: start; 
+    border: 0.5px solid rgba(0,0,0,0.1);    
 }
 .tarjeta-base:hover {
     position: relative;
@@ -339,11 +343,16 @@ body {
 .tarjeta-horario,
 .tarjeta-apostolado,
 .tarjeta-contacto,
-.tarjeta-sacramentos { border-top: 2px solid var(--color-vinotinto-profundo); }
+.tarjeta-sacramentos,
+.tarjeta-obras { border-top: 2px solid var(--color-vinotinto-profundo); }
 .tarjeta-contacto { margin-top: 2rem; }
 .tarjeta-contacto p { text-align: center; margin-top: 1rem; }
 #sacramentos .tarjeta-sacramentos,
 #obras .tarjeta-apostolado { background: var(--color-fondo-principal); }
+
+/* --- ELIMINAMOS ESTA REGLA --- */
+/* #contactos .tarjeta-contacto {height: auto} */
+
 .tarjeta-titulo {
     font-family: var(--fuente-titulos);
     font-weight: 700;
@@ -351,13 +360,14 @@ body {
     font-size: 1.25rem;
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 .tarjeta-base ul {
-    padding-left: 2rem;
-    line-height: 1.5;
     margin: 1rem 0;
+}
+.tarjeta-base ul:not(.lista-interactiva) {
+    padding-left: 2rem;
+    list-style: disc;
 }
 .tarjeta-base ul li::marker { color: var(--color-dorado-vibrante); }
 
@@ -366,7 +376,7 @@ body {
 .tabla-pagos {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem 0;
+    margin: 1rem 0;    
 }
 .tabla-horarios td,
 .tabla-pagos td {
@@ -379,9 +389,19 @@ body {
 .tabla-horarios .hora,
 .tabla-pagos .datos { text-align: right; padding-right: 1rem; }
 .tarjeta-horario>p {
-    text-align: right;
     font-style: italic;
     opacity: 0.8;
+}
+.linea-contacto {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+#contactos a {
+    text-decoration: none;
+    color: var(--color-vinotinto-profundo);
+    text-align: right;
 }
 
 /* --- CONTENEDOR BOTÓN INSTALAR --- */
@@ -460,7 +480,6 @@ body {
     :root { --header-height: 50px; }
     html { font-size: 12px; }
     body { font-size: 14px; padding-top: 50px; }
-    #inicio.seccion { padding-top: 20px; }
     #botones-flotantes { display: flex; }
     .tarjeta-base,
     .tarjeta-actividad { flex: 0 0 95%; min-width: 290px; }
@@ -493,6 +512,12 @@ body {
     .titulo-seccion { font-size: 2.2rem; white-space: normal; }
     .titulo-subseccion { font-size: 1.5rem; }
     .tarjeta-titulo { font-size: 1.4rem; }
+    .tarjeta-base { min-height: 35rem; }
+
+    /* ----> AÑADIMOS ESTA REGLA PARA ARREGLAR LA ALTURA <---- */
+    .tarjeta-contacto {
+        min-height: initial;
+    }
 }
 
 @media (min-width: 768px) {
@@ -502,11 +527,14 @@ body {
     #contactos .tarjeta-base { flex-basis: calc(50% - 0.5rem); }
     .titulo-seccion { white-space: nowrap; }
 }
-
-.foto-contenedor { width: 100%; margin: 1rem 0; }
+.foto-contenedor { 
+    width: 100%; 
+    margin-top: auto;
+    padding-top: 1rem; 
+}
 .foto-placeholder {
     width: 100%;
-    aspect-ratio: 2/1;
+    aspect-ratio: 16/9;
     background: #e0e0e0;
     border-radius: 8px;
     display: flex;
@@ -518,7 +546,7 @@ body {
 }
 
 /* ==========================================================================
-    5. ESTILOS PARA NOTIFICACIÓN DE ACTUALIZACIÓN (NUEVO)
+    5. ESTILOS PARA NOTIFICACIÓN DE ACTUALIZACIÓN
    ========================================================================== */
 #update-notification {
     position: fixed;
@@ -537,7 +565,7 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 #update-notification.notification-hidden {
-    transform: translateX(-50%) translateY(200%); /* Oculta la notificación abajo */
+    transform: translateX(-50%) translateY(200%);
 }
 #update-notification p {
     margin: 0;
@@ -556,4 +584,121 @@ body {
 }
 #reload-button:hover {
     background-color: #ecca5a;
+}
+
+/* ==========================================================================
+    6. ESTILOS PARA LISTAS INTERACTIVAS
+   ========================================================================== */
+.lista-interactiva {
+    padding-right: 2.2rem;
+    padding-left: 0;
+    list-style: none;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.lista-interactiva li {
+    display: flex;
+    align-items: flex-start; /* <-- CAMBIO CLAVE: Alinea viñeta y texto al top */
+    cursor: pointer;
+    position: relative;
+}
+
+.lista-interactiva li::before {
+    content: '•';
+    color: var(--color-dorado-vibrante);
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.2; /* Ajusta la alineación vertical de la viñeta con la primera línea de texto */
+    margin-right: 0.75rem;
+}
+
+.lista-contenido {
+    flex-grow: 1;
+}
+
+.lista-contenido p {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 0.25rem;
+    line-height: 1.3;
+}
+
+.lista-interactiva li h4 {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.lista-interactiva li::after {
+    content: '➜';
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--color-vinotinto-profundo);
+    line-height: 1;
+    transition: transform 0.18s ease, color 0.18s ease;
+    pointer-events: none;
+    align-self: center; /* <-- AÑADIDO: Mantiene la flecha centrada verticalmente */
+}
+
+.lista-interactiva li:hover::after,
+.lista-interactiva li:focus::after {
+    transform: translateX(6px) scale(1.08);
+    color: var(--color-dorado-vibrante);
+}
+.lista-interactiva li:focus {
+    outline: 2px dashed rgba(128,0,32,0.15);
+    outline-offset: 3px;
+}
+
+/* ==========================================================================
+    7. ESTILOS PARA BOTÓN VOLVER EN CARRUSEL (ESTILO FLECHA)
+   ========================================================================== */
+   .boton-volver-carrusel {
+    /* Eliminamos el fondo y el borde para que sea solo el ícono */
+    background: none;
+    border: none;
+    
+    /* Posicionamiento en la esquina superior derecha */
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    z-index: 15;
+
+    /* Estilos de la flecha, imitando a .lista-interactiva li::after */
+    font-size: 2.5rem; /* <-- Más grande para que sea fácil de clickear */
+    font-weight: 400;
+    color: var(--color-vinotinto-profundo);
+    line-height: 1;
+    cursor: pointer;
+    
+    /* Transición suave para el efecto hover */
+    transition: transform 0.18s ease, color 0.18s ease;
+
+    /* Aseguramos que el tamaño no dependa del contenido */
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+.boton-volver-carrusel:hover {
+    /* El mismo efecto hover que la flecha de la lista */
+    transform: translateX(-6px) scale(1.08); /* <-- Se mueve a la izquierda */
+    color: var(--color-dorado-vibrante);
+}
+
+@media (max-width: 767px) {
+    .lista-interactiva {
+        padding-right: 1.6rem;
+        justify-content: space-evenly;
+    }
+    .lista-interactiva li::after {
+        font-size: 1.4rem;
+        transform: none;
+    }
+    .lista-interactiva li::before {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    }
 }

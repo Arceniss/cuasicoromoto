@@ -1,6 +1,6 @@
 {
-  "name": "Cuasiparroquia Ntra. Sra. de Coromoto",
-  "short_name": "CuasiCoromoto",
+  "name": "Cuasicoromoto",
+  "short_name": "Cuasicoromoto",
   "description": "Página oficial de la Cuasiparroquia Nuestra Señora de Coromoto. Horarios, actividades y más.",
   "start_url": ".",
   "display": "standalone",
